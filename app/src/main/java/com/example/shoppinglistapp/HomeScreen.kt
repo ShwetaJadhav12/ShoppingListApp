@@ -51,6 +51,7 @@ fun home(modifier: PaddingValues ){
             items(sitems) {
                 item ->
                 Card(
+
                     modifier = Modifier.padding(8.dp).fillMaxWidth().height(70.dp),
                     colors = androidx.compose.material3.CardDefaults.cardColors(
                         containerColor = Color.White,
@@ -125,5 +126,4 @@ fun home(modifier: PaddingValues ){
             )
         }
     }
-
 }
