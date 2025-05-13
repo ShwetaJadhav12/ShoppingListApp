@@ -50,32 +50,8 @@ fun Home(modifier: PaddingValues) {
         }
         LazyColumn {
             items(sitems) {
-                item ->
-                Card(
 
-                    modifier = Modifier.padding(8.dp).fillMaxWidth().height(70.dp),
-                    colors = androidx.compose.material3.CardDefaults.cardColors(
-                        containerColor = Color.White,
-                        contentColor = c1
-                    ),
-                    elevation = androidx.compose.material3.CardDefaults.cardElevation(
-                        defaultElevation = 10.dp
-                    ),
-                    border = androidx.compose.material3.CardDefaults.outlinedCardBorder(
-                    )
-                ) {
-                    Column(
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        Text(text = "Product Name: "+item.itemName,
-                            fontSize = androidx.compose.material3.MaterialTheme.typography.titleMedium.fontSize,
-                            fontWeight = androidx.compose.material3.MaterialTheme.typography.titleMedium.fontWeight,
-                            fontFamily = androidx.compose.material3.MaterialTheme.typography.titleMedium.fontFamily,
-                            fontStyle = androidx.compose.material3.MaterialTheme.typography.titleMedium.fontStyle)
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = item.qunty.toString())
-                    }
-                }
+                ShoppingListDisplay(it,{},{})
             }
 
         }
@@ -90,18 +66,31 @@ fun Home(modifier: PaddingValues) {
                     Button(onClick = {
                         if (iname.isNotBlank() && iqunty.isNotBlank()){
 
-                            sitems = sitems + ShoppingItems(
-                                id = sitems.size + 1,
+                            var newitem = ShoppingItems(
+                                id = sitems.size+1,
                                 itemName = iname,
                                 qunty = iqunty.toInt()
+
+
                             )
+                            sitems = sitems + newitem
+                            iname = ""
+                            iqunty = ""
+                            showDig = false
 
 
                         }
 
                         showDig = false
 
-                    }) {
+                    },
+                        colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                            containerColor = c1,
+                            contentColor = Color.White
+                        )
+                        )
+
+                    {
                         Text(text = "Add")
                     }
                 },
