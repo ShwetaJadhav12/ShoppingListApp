@@ -2,6 +2,7 @@ package com.example.shoppinglistapp
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -61,14 +62,20 @@ fun home(modifier: PaddingValues ){
                         defaultElevation = 10.dp
                     ),
                     border = androidx.compose.material3.CardDefaults.outlinedCardBorder(
-
                     )
                 ) {
-                    Text(text = iname, modifier = Modifier.padding(8.dp))
-                    Text(text = iqunty.toString(), modifier = Modifier.padding(8.dp))
+                    Column(
+                        modifier = Modifier.padding(8.dp)
+                    ) {
+                        Text(text = "Product Name: "+item.itemName,
+                            fontSize = androidx.compose.material3.MaterialTheme.typography.titleMedium.fontSize,
+                            fontWeight = androidx.compose.material3.MaterialTheme.typography.titleMedium.fontWeight,
+                            fontFamily = androidx.compose.material3.MaterialTheme.typography.titleMedium.fontFamily,
+                            fontStyle = androidx.compose.material3.MaterialTheme.typography.titleMedium.fontStyle)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = item.qunty.toString())
+                    }
                 }
-
-
             }
 
         }
