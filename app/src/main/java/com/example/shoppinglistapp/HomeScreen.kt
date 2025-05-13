@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Home(modifier: PaddingValues ){
+fun Home(modifier: PaddingValues) {
     val c1 = Color(0xFF17555D)
 
     var iname by remember { mutableStateOf("") }
@@ -34,7 +34,7 @@ fun Home(modifier: PaddingValues ){
     var showDig  by remember { mutableStateOf(false) }
     var sitems by remember { mutableStateOf(listOf<ShoppingItems>()) }
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
+        modifier = Modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(
