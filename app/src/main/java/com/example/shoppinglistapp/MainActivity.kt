@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ShoppingListAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    home(modifier = innerPadding)
+                    Home(modifier = innerPadding)
                 }
             }
         }

@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun home(modifier: PaddingValues ){
+fun Home(modifier: PaddingValues ){
     val c1 = Color(0xFF17555D)
 
     var iname by remember { mutableStateOf("") }
