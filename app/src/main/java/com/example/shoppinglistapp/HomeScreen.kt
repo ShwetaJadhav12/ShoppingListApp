@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -33,6 +34,8 @@ fun Home(modifier: PaddingValues) {
     var iqunty by remember { mutableStateOf("") }
     var showDig  by remember { mutableStateOf(false) }
     var sitems by remember { mutableStateOf(listOf<ShoppingItems>()) }
+    var ename by remember { mutableStateOf("") }
+    var equnty by remember { mutableStateOf("") }
     Column(
         modifier = Modifier,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -40,7 +43,7 @@ fun Home(modifier: PaddingValues) {
         Button(
             onClick = { showDig = true },
             modifier = Modifier.padding(16.dp),
-            colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+            colors = ButtonDefaults.buttonColors(
                 containerColor = c1,
                 contentColor = Color.White
 
@@ -50,8 +53,42 @@ fun Home(modifier: PaddingValues) {
         }
         LazyColumn {
             items(sitems) {
+                item ->
+//                modify items inside the list
+                if(item.isEditing){
 
-                ShoppingListDisplay(it,{},{})
+                    ShoppingListEditing(item = item,
+                        OnEditComplete = {
+                            ename , equnty ->
+                            sitems = sitems.map { it.copy(isEditing = false) }
+                            val editItem = sitems.find { it.id == item.id }
+                            editItem?.let{
+                                it.itemName = ename
+                                it.qunty = equnty
+                            }
+                        }
+
+
+
+                    )
+
+                }
+                else{
+                    ShoppingListDisplay(item = item,
+                        onEdit = {
+//                            finding which item is editing and after editing changing it to false
+                            sitems = sitems.map { it.copy(isEditing = it.id == item.id) }
+                        },
+
+                        onDelete = {
+//                            just subtracting our current item from the list
+                            sitems = sitems-item
+                        })
+
+
+                }
+
+
             }
 
         }
@@ -84,7 +121,7 @@ fun Home(modifier: PaddingValues) {
                         showDig = false
 
                     },
-                        colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                        colors = ButtonDefaults.buttonColors(
                             containerColor = c1,
                             contentColor = Color.White
                         )
